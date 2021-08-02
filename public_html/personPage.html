@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Profile</title>
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/reset.css"/>
+	<link rel="stylesheet" type="text/css" href="/css/common.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/icon.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/person.css"/>
+    <script src="./jquery.js"></script>
+	<script src="./js/post.js"></script>
+	<script src="./js/profile.js"></script>
+</head>
+<body>
+	<div class="webblog person">
+		<header class="webblog_top ">
+			<div class="container">
+
+				<div class="webName">
+					ChowChow
+				</div>
+				<!-- <div class="search">
+					<input type="text" name="" id="" value="" />
+					<a href="" class="icon icon-fangda"></a>
+				</div> -->
+				<div class="nav">
+					<div class="user" style="display: none;">
+						<span>
+							<a href="" id="personPage">
+								<i class="icon icon-person"></i>
+								<span id="username"></span>
+							</a>
+							<div class="commentPrompt">
+								<div class="comment-inner"></div>
+								<a class="newCount">21</a>
+								<div class="iknow">
+									<button href="javascript:;" >Details</button>
+									<button href="javascript:;" >Cancel</button>
+								</div>
+							</div>
+
+							
+							<a href="http://localhost:8888/user/logout" class="logout">Quit</a>
+						</span>
+					</div>
+					<div class="setPersonData">
+						<a href="http://localhost:8888/updateUser.html" target="_blank">
+
+							<i class="icon icon-setData"></i>
+							Set your profile
+						</a>
+					</div>
+
+					<div class="login">
+						<a href="http://localhost:8888/login.html">Login</a>
+						<a href="http://localhost:8888/regist.html">Register</a>
+					</div>
+					<div class="homepage">
+						<a href="http://localhost:8888/homepage.html">
+							<i class="icon icon-home"></i>Home Page
+						</a>
+					</div>
+				</div>
+
+			</div>
+			<div class="shadeBg">
+				
+			</div>
+			<div class="showNewComment">
+				<a href="javascript:;" id="closeShow"></a>
+				<div class="showNewComment-inner">
+					<div class="showNewComment-content comment-list">
+
+					</div>
+				</div>
+			</div>
+
+
+		</header>
+		<!--中间内容-->
+		<div class="webblog_main">
+			<div class="container">
+				<div class="personPage_user">
+					<div class="">
+						<p class="person_avatar"><img src=""/></p>
+						<p class="person_name"></p>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-3">
+						<div class="text-box">
+							<span></span> Posts
+						</div>
+						<div class="text-box" id="myComment">
+							<a href="http://localhost:8888/userComment.html">See comments</a>
+						</div>
+					</div>
+					<div class="col-md-9">
+						<div class="post-wrap">
+
+						</div>
+
+						<!-- <div class="pageCount clearfix"> -->
+						<div class="pageCount">
+							<ul></ul>
+						</div>
+					</div>
+					
+				</div>
+			</div>
+			
+		</div>
+
+
+	</div>
+
+
+	
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Update your profile</title>
+    </style>
+    <script src="./jquery.js" type="text/javascript"></script>
+    <script src="./js/updateProfile.js" type="text/javascript"></script>
+    <script src="/js/jquery.form.min.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript">
+        $(function() {
+            $.ajax({
+                url: "http://localhost:8888/web/islogin",
+                method: 'GET',
+                success: ((message) => {
+                    if(message=="-1") {
+                        alert("You haven't login yet")
+                        location.href="http://localhost:8888/login.html"
+                    } else {
+                        $("#username").val(sessionStorage.getItem("loginer"))
+                        $("#form").submit(function() {
+                            $(this).ajaxSubmit({
+                                url: "http://localhost:8888/user/updateUser",
+                                type:'POST',
+                                success:function (result){
+                                    console.log(result)
+                                    if(result=="1") {
+                                        alert("Success")
+                                        location.href="http://localhost:8888/homePage.html"
+                                    } else if(result=="-1"){
+                                        alert("Failed");
+                                        location.reload()
+                                    } else if (result=="psderror"){
+                                        $("#warnings").show();
+                                        $("#warnings").html("Wrong Password");
+                                    }
+                                }
+                            })
+                        })
+                    }
+                })
+            })
+        })
+    </script>
+</head>
+<body>
+<div class="form">
+    <h1>
+        Update your profile
+    </h1>
+    <span id="warnings"></span>
+    <div class="userAction">
+        <form  id="form" action="javascript:;">
+            <p><input type="text" placeholder="New Username" name="username" id="username"/></p>
+            <p><input type="password" placeholder="Old Password" name="oldPassword"/></p>
+            <p><input type="password" placeholder="New Password" name="newPassword"/></p>
+            <p><input type="file" name="avatar" value="Choose Photo"/> <span id="fileTips">Photo</span></p>
+            <p><input type="submit" id="submit" value="Submit" /></p>
+        </form>
+    </div>
+</div>
+</body>
+</html>
