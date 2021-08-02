@@ -1,6 +1,3 @@
-/**
- * Created by 侯小贤 on 2016/11/5.
- */
 var  formidable=require("formidable");
 var  path=require("path");
 var  fs=require("fs");

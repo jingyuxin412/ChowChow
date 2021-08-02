@@ -1,7 +1,3 @@
-/**
- * Created by 侯小贤 on 2016/11/8.
- */
-
 var  mongodb=require("mongoose");
 var  db=require("./db.js");
 
