@@ -7,21 +7,8 @@
 		<script src="./jquery.js"></script>
 		<script src="./js/post.js"></script>
 		<script src="./js/myComment.js"></script>
-		<script>
-			$(function() {
-				islogin(function(result) {
-					if(result != 1) {
-						alert("You haven't login yet!")
-						$(".comment-list").removeClass("canComment")
-						location.href='http://localhost:8888/login.html'
-						return ;
-					}
-					$(".comment-list").addClass("canComment")
-				})
-			})
-		</script>
+		<script src="./js/getComments.js"></script>
 	</head>
-
 	<body>
 		<div class="webblog userComment">
 			<header class="webblog_top ">
@@ -30,20 +17,15 @@
 					<div class="webName">
 						ChowChow
 					</div>
-					<!-- <div class="search">
-						<input type="text" name="" id="" value="" />
-						<a href="" class="icon icon-fangda"></a>
-					</div> -->
 					<div class="nav">
 						<div class="user" style="display: none;">
 							<span>
-                                        <a href="" id="personPage">
-                                            <i class="icon icon-person"></i>
-                                            <span id="username"></span>
+								<a href="" id="personPage">
+                                <i class="icon icon-person"></i>
+                                <span id="username"></span>
 							</a>
 							<div class="commentPrompt">
 								<div class="comment-inner">
-
 								</div>
 								<a class="newCount"></a>
 								<div class="iknow">
