@@ -2,7 +2,6 @@ var  express=require("express");
 var  app=express();
 var  cookieParser=require("cookie-parser")
 var  session=require("express-session");
-var routers=require("./routers/route.js")
 
 app.use(cookieParser())
 app.use(session({
@@ -19,9 +18,9 @@ app.use(express.static('./avatar'));
 var  formidable=require("formidable");
 var  path=require("path");
 var  fs=require("fs");
-var  userservice=require("../database/users.js");
-var  postservice=require("../database/posts.js");
-var  commentservice=require("../database/comments.js")
+var  userservice=require("./database/users.js");
+var  postservice=require("./database/posts.js");
+var  commentservice=require("./database/comments.js")
 
 var  usersOnLogin=[];
 
