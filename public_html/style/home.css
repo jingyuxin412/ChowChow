@@ -1,0 +1,71 @@
+
+html {
+    overflow: hidden;
+    color: #000;
+    background:url(../img/homebackground3.jpeg) ;
+    
+}
+.webblog_top{
+    height: 30%;
+    padding: 1.5em 0;
+    background-color:rgb(255,255,255,0.6);
+ 
+
+}
+.webName{
+    font-size: 2em;
+    font-weight: 400;
+    color:rgb(216, 189, 101);
+}
+.webName{
+    text-shadow:-1px 0 rgb(71, 106, 170), 
+    0 1px rgb(71, 106, 170), 
+    1px 0 rgb(71, 106, 170),
+    0 -1px rgb(71, 106, 170);
+    font-family: fantasy;
+
+}
+.search{
+    position: fixed;
+    top:10%;
+    left:80%;
+    width:40%;
+}
+.search input[type="text"] {
+    padding-left: 25px;
+    background: none;
+  width: 30%;
+
+  font-size: 0.9em;
+  color: #fff;
+    
+}
+.search input[type="submit"] {	
+  cursor: pointer;
+  position: absolute;
+  outline: none;
+background: url(../img/search.png)no-repeat 0px 0px ;
+width: 25px;
+height: 25px;
+padding:0%;
+}
+.nav{
+    position: fixed;
+    top:25%;
+    left:70%;
+    width:25%;
+}
+.login a{
+    
+    color: rgb(216, 189, 101);
+    text-shadow: 0 0 1px black;
+    padding-left: 50%;
+
+}
+.homepage a{
+    
+    color: rgb(216, 189, 101);
+    text-shadow: 0 0 1px black;
+    padding-left: 50%;
+
+}

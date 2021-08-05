@@ -12,7 +12,7 @@ $(function() {
             $("#tourist").show()
         }
     })
-    var  url="http://localhost:8888/post/getAllPost?page=";
+    var url="http://localhost:8888/post/getAllPost?page=";
 
     //获取帖子总数
     getPostCount("http://localhost:8888/post/getAllPostCount",function (page) {
@@ -33,25 +33,6 @@ $(function() {
 
     //默认获取第一页帖子
     getpost(url,1);
-    
-    //管理员管理帖子
-    $(".manager").on("click","a", function () {
-        if(this.id=="showAllUser"){
-            if($(this).hasClass("on")){
-                $(this).removeClass("on")
-            }else{
-                $(this).addClass("on")
-            }
-        }else if(this.id=="managePost"){
-            if($(this).hasClass("on")){
-                $(".post-wrap").removeClass("del")
-                $(this).removeClass("on")
-            }else{
-                $(".post-wrap").addClass("del")
-                $(this).addClass("on")
-            }
-        }
-    })
 
 
     //监听发帖事件
