@@ -1,21 +1,13 @@
 $(function() {
     islogin(function (result,result2) {
         if(result==1){
-            $(".avatar img").attr("src", "./avatar"+ result2.avatar)
+            $(".avatar img").attr("src", "./"+ result2.avatar)
             console.log(result2.avatar)
             $(".post").show()
             var role=sessionStorage.getItem("loginRole");
-            if(role=="2"){
-                $("#admin").show()
-                $(".manager").show()
-                if($(".managePost").hasClass("on")){
-                    $(".post-wrap").addClass("del")
-                }
-            }else if(role=="1"){
-                $("#member").show()
-            }
-        }else{
-            $(".avatar img").attr("src","./avatar/duck.jpeg")
+            $("#member").show()
+        } else {
+            $(".avatar img").attr("src","./duck.jpeg")
             $(".post").hide();
             $("#tourist").show()
         }

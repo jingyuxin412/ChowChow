@@ -59,6 +59,7 @@ $(function () {
         var avatar=sessionStorage.getItem("loginAvatar");
         $(".person_name").html(username);
         $(".person_avatar img").attr("src",avatar);
+        console.log(avatar)
         //获取用户帖子总数
         getPostCount(url1,function (page,count) {
             var pageSize=parseInt(page)+1;

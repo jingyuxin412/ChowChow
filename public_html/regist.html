@@ -5,6 +5,7 @@
 		<title>Register Account</title>
 		<script src="./jquery.js" type="text/javascript"></script>
 		<script src="./js/register.js" type="text/javascript"></script>
+		<link type="text/css" rel="stylesheet" href="./style/register.css">
 		<script type="text/javascript">
 			$(function(){
 				$("input").focus(function () {
@@ -12,7 +13,6 @@
 				})
 			})
 		</script>
-		
 	</head>
 	<body>
 		<div class="form">
@@ -20,15 +20,15 @@
 				Register
 			</h1>
 			<span id="warnings"></span>
-			<form  id="form">
+			<form id="form-inner">
 				<div>
-					<input type="text" name="username" id="username" placeholder="Username"/>
+					<input type="text" class="userInput" name="username" id="username" placeholder="Username"/>
 				</div>
 				<div>
-					<input type="password" name="password" id="password" placeholder="Password"/>
+					<input type="password" class="userInput" name="password" id="password" placeholder="Password"/>
 				</div>
 				<div>
-					<input type="password" name="comfirm_password" id="comfirm_password" placeholder="Confirm Password" />
+					<input type="password" class="userInput" name="comfirm_password" id="comfirm_password" placeholder="Confirm Password" />
 				</div>
 				<div>
 					<input type="button" id="submit" onclick="register()" value="Register Now!" />
