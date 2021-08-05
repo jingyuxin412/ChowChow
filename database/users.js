@@ -28,17 +28,6 @@ userSchema.statics.insertUser= function (json,callback) {
     })
 }
 
-//查找某个用户
-userSchema.statics.findOneUser= function (json,callback) {
-    this.model("user").findOne(json).sort({registDate:-1}).exec(function (err,result) {
-        if(err){
-            console.log("查找错误")
-            return
-        }
-        //result是一个数组
-        callback(result)
-    })
-}
 
 //根据分页查找所有用户
 userSchema.statics.findAllUser= function (page,callback) {
@@ -64,6 +53,17 @@ userSchema.statics.delUser= function (json,callback) {
             console.log(err)
             return
         }
+        callback(result)
+    })
+}
+
+userSchema.statics.findOneUser= function (json,callback) {
+    this.model("user").findOne(json).sort({registDate:-1}).exec(function (err,result) {
+        if(err){
+            console.log("查找错误")
+            return
+        }
+        //result是一个数组
         callback(result)
     })
 }

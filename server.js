@@ -57,6 +57,15 @@ app.get('/web/islogin', (req, res) => {
     }
 });
 
+app.get("/user/searchUserByID/", (req, res) => {
+    var id = req.query.id;
+    userservice.find({_id: id})
+    .exec((error, result) => {
+        res.json(result)
+    })
+    console.log(id);
+});
+
 app.post("/user/login", (req, res) => {
     var form=new formidable.IncomingForm();
     form.parse(req,function (err,fields,file) {
@@ -130,15 +139,12 @@ app.get('/user/logout', (req, res) => {
     res.send("1");
 });
 
-app.get("//user/findUser", (req, res) => {
+app.get("/user/findUser", (req, res) => {
     var username=req.query.name;
-    userservice.findOneUser({username:username}, function (result) {
-        if(!result){
-            res.send("-1")
-        }else{
-            res.json(result)
-        }
-    })
+    userservice.findOne({username: username})
+    .exec((error, result) => {
+        res.json(result)
+    });
 });
 
 app.get("/user/getAllUser", (req, res) => {
@@ -500,7 +506,6 @@ function addComment(){
     }
     //console.log(json)
     commentservice.addComment(json, function (result) {
-       // console.log(666666666666,result)
         if(!result){
             res.send("-1")
         }else{
@@ -518,8 +523,6 @@ app.get("/post/showUserAllComment", (req, res) => {
         avatar:req.session.avatar,
         post:[]
     }
-
-    //他所有的帖子
     postservice.getAllPost({authorId:id}, function (posts) {
         //这个人没有发过帖子，直接不用遍历
         if(!posts.length){
@@ -588,6 +591,7 @@ app.get("/post/showUserAllComment", (req, res) => {
         }
     })
 });
+
 app.get("/post/showUserNewComment", (req, res) => {
     var  userId=req.session.userID;
     if( !userId){
@@ -655,6 +659,14 @@ app.get("/post/showUserNewComment", (req, res) => {
 
         }
     })
+});
+
+app.get('/post/searchPost/', (req, res) => {
+    let keyword = req.query.keyword;
+    postservice.find({postTitle: keyword})
+    .exec((error, retVal) => {
+        res.json(retVal)
+    });
 });
 
 app.listen(8888);

@@ -103,14 +103,13 @@ function getpost(url,page){
 function getUser(name,callback){
     $.ajax({
         url: "http://localhost:8888/user/findUser?name=" + name,
-        methor: "GET",
+        method: "GET",
         success: ((result) => {
             callback(result)
         })
     })
 }
 
-//时间格式化
 function FormatDate (date) {
     var date=new Date(date)
     return date.toLocaleDateString()+" "+date.toLocaleTimeString();
@@ -120,9 +119,29 @@ function FormatDate (date) {
 function getPostCount(url,callback){
     $.ajax({
         url: url,
-        methor: "GET",
+        method: "GET",
         success: ((result) => {
             callback(result[0],result[1])
         })
     })
+}
+
+function search() {
+    var keyword = $('#searchPosts').val()
+    console.log(keyword);
+    $.ajax({
+        url: "http://localhost:8888/post/searchPost/?keyword=" + keyword,
+        method: "GET",
+        success: ((postsResult) => {
+            posts = JSON.parse(postsResult);
+            for (i in posts) {
+                console.log(posts[i]);
+                authorID = posts[i].authorId;
+                postID = posts[i]._id;
+                postTitle = posts[i].postTitle;
+                postDate = posts[i].postDate;
+                postContent = posts[i].postContent;
+            }
+        })
+    });
 }
