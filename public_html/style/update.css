@@ -1,4 +1,3 @@
-
 body {
     margin: 0;
     display: flex;
@@ -59,7 +58,7 @@ h1 {
     font-size: 3em;
 }
 
-.userInput {
+.userAction{
     margin-bottom: 12px;
     min-width: 200px;
 }

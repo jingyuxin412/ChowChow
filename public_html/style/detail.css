@@ -1,0 +1,65 @@
+html {
+    overflow: scroll;
+    color: #000;
+    background:url(../img/homebackground5.jpeg) ;
+    
+}
+.webblog_top{
+    border-radius:30px;
+    height: 30%;
+    padding: 1.5em 0;
+    background-color:rgb(255,255,255,0.6);
+ 
+
+}
+.logout{
+    position: relative;
+    top:25%;
+    left:70%;
+    width:25%;
+
+}
+.webName{
+    font-size: 2em;
+    font-weight: 400;
+    color:rgb(216, 189, 101);
+}
+.webName{
+    text-shadow:-1px 0 rgb(71, 106, 170), 
+    0 1px rgb(71, 106, 170), 
+    1px 0 rgb(71, 106, 170),
+    0 -1px rgb(71, 106, 170);
+    font-family: fantasy;
+
+}
+.nav{
+    position: relative;
+    top:25%;
+    left:70%;
+    width:25%;
+}
+
+.login a{
+    
+    color: rgb(216, 189, 101);
+    text-shadow: 0 0 1px black;
+    padding-left: 50%;
+
+}
+.homepage a{
+    
+    color: rgb(216, 189, 101);
+    text-shadow: 0 0 1px black;
+    padding-left: 50%;
+
+}
+
+.webblog_main{
+    border-radius:30px;
+    margin-top: 1%;
+    height: 70%;
+    padding: 1.5em 0;
+    background-color:rgb(255,255,255,0.6);
+ 
+
+}

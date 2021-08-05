@@ -1,11 +1,13 @@
 
+
 html {
-    overflow: hidden;
+    overflow: scroll;
     color: #000;
     background:url(../img/homebackground3.jpeg) ;
     
 }
 .webblog_top{
+    border-radius:30px;
     height: 30%;
     padding: 1.5em 0;
     background-color:rgb(255,255,255,0.6);
@@ -40,7 +42,7 @@ html {
   color: #fff;
     
 }
-.search input[type="submit"] {	
+.icon-fangda{	
   cursor: pointer;
   position: absolute;
   outline: none;
@@ -50,7 +52,7 @@ height: 25px;
 padding:0%;
 }
 .nav{
-    position: fixed;
+    position: relative;
     top:25%;
     left:70%;
     width:25%;
@@ -68,4 +70,49 @@ padding:0%;
     text-shadow: 0 0 1px black;
     padding-left: 50%;
 
+}
+
+.webblog_main{
+    border-radius:30px;
+    margin-top: 1%;
+    height: 70%;
+    padding: 1.5em 0;
+    background-color:rgb(255,255,255,0.6);
+ 
+
+}
+
+.post-clearfix{
+    padding:1em;
+  border: 1em solid transparent;
+  background: linear-gradient(white,white) padding-box,repeating-linear-gradient(-45deg, red 0, red 12.5%, transparent 0, transparent 25%, #58a 0, #58a 37.5%, transparent 0, transparent 50%) 0/5em 5em;
+
+    width:50%;
+    height:60%;
+
+}
+#postContent{
+    margin-left: 10%;
+}
+
+
+
+
+.post-wrap{
+    margin-top: 2%;
+    border: 1em solid transparent;
+  background: linear-gradient(white,white) padding-box,repeating-linear-gradient(-45deg, red 0, red 12.5%, transparent 0, transparent 25%, #58a 0, #58a 37.5%, transparent 0, transparent 50%) 0/5em 5em;
+
+    width:50%;
+}
+#icon-person{
+    margin-top: 3%;
+    height:35px;
+    width:35px;
+
+}
+#headshot{
+    margin-top: 3%;
+    height:35px;
+    width:35px;
 }
