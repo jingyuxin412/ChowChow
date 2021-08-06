@@ -1,0 +1,42 @@
+html {
+    overflow: scroll;
+    color: #000;
+    background:url(../img/homebackground4.jpeg) ;
+    
+}
+
+.webblog_top{
+    border-radius:30px;
+    height: 30%;
+    padding: 1.5em 0;
+    background-color:rgb(255,255,255,0.6);
+ 
+
+}
+.webName{
+    font-size: 2em;
+    font-weight: 400;
+    color:rgb(216, 189, 101);
+}
+.webName{
+    text-shadow:-1px 0 rgb(71, 106, 170), 
+    0 1px rgb(71, 106, 170), 
+    1px 0 rgb(71, 106, 170),
+    0 -1px rgb(71, 106, 170);
+    font-family: fantasy;
+
+}
+
+body h2{
+    text-align: center;
+    border-radius: 20px;
+    background-color: rgb(143, 176, 219,0.6);
+    width:30%;
+}
+.introduction{
+    text-align: center;
+    font-size: 65%;
+}
+body h3{
+    font-family: Comic Sans MS, Comic Sans, cursive;
+}
