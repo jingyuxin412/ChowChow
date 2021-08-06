@@ -1,7 +1,9 @@
 var  express=require("express");
 var  app=express();
-var  cookieParser=require("cookie-parser")
+var  cookieParser=require("cookie-parser");
 var  session=require("express-session");
+const iterations = 1000;
+const crypto = require('crypto');
 
 app.use(cookieParser())
 app.use(session({
@@ -57,37 +59,33 @@ app.get('/web/islogin', (req, res) => {
     }
 });
 
-// app.get("/user/searchUserByID/", (req, res) => {
-//     var id = req.query.id;
-//     userservice.findOne({_id: id})
-//     .exec((error, result) => {
-//         res.json(result)
-//     })
-//     console.log(id);
-// });
-
 app.post("/user/login", (req, res) => {
     var form=new formidable.IncomingForm();
     form.parse(req,function (err,fields,file) {
         var username=fields.username;
-        var psd=fields.password;
+        var psd = fields.password;
         userservice.findOneUser({username:username}, function (result) {
             if(!result){
-                res.send("-2")
-            }else{
-                var psd2=result.password;
-                if(psd2===psd){
-                    //登录成功
-                    usersOnLogin.push(result);
-                    req.session.login="1";
-                    req.session.userID=result._id;
-                    req.session.username=username;
-                    req.session.avatar=result.avatar;
-                    req.session.role=result.role;
-                    res.send("1")
-                }else if(psd2!==psd){
-                    res.send("-1")
-                }
+                res.send("-1")
+            } else {
+                var psd2 = result.password;
+                var salt = result.salt;
+
+                crypto.pbkdf2(psd, salt, iterations, 64, 'sha512', (err, hash) => {
+                    if (err) throw err;
+                    let hStr = hash.toString('base64');
+                    if (hStr == psd2) {
+                        usersOnLogin.push(result);
+                        req.session.login="1";
+                        req.session.userID=result._id;
+                        req.session.username=username;
+                        req.session.avatar=result.avatar;
+                        req.session.role=result.role;
+                        res.send("1");
+                    } else {
+                        res.send("-1");
+                    }
+                })
             }
         })
     })
@@ -99,31 +97,35 @@ app.post('/user/regist', (req, res) => {
         var username=fields.username;
         var password=fields.password;
         var avatar="duck.jpeg";
-        var json={
-            username:username,
-            password:password,
-            avatar:avatar,
-            registDate:new Date(),
-            role:"1"
-        }
-        userservice.findOneUser({username:username}, function (result) {
-            if(!result){
-                userservice.insertUser(json, function (result) {
-                    if(result){
-                        usersOnLogin.push(result);
-                        req.session.login="1";
-                        req.session.userID=result._id;
-                        req.session.username=username;
-                        req.session.avatar="duck.png";
-                        req.session.role="1";
-                        res.send("1")
-                    }else{
-                        res.send("-2");
-                    }
-                })
-            }else{
-                res.send("-1")
+        var salt = crypto.randomBytes(64).toString('base64');
+        crypto.pbkdf2(password, salt, iterations, 64, 'sha512', (err, hash) =>{
+            if (err) throw err;
+            var json={
+                username: username,
+                password: hash.toString('base64'),
+                salt: salt,
+                avatar: avatar,
+                registDate: new Date(),
             }
+            userservice.findOneUser({username:username}, function (result) {
+                if(!result){
+                    userservice.insertUser(json, function (result) {
+                        if(result) {
+                            usersOnLogin.push(result);
+                            req.session.login="1";
+                            req.session.userID=result._id;
+                            req.session.username=username;
+                            req.session.avatar="duck.png";
+                            req.session.role="1";
+                            res.send("1")
+                        } else {
+                            res.send("-1");
+                        }
+                    })
+                } else {
+                    res.send("-1")
+                }
+            })
         })
     })
 });
@@ -560,8 +562,6 @@ app.get("/post/showUserAllComment", (req, res) => {
                     //console.log(444,comments)
                     var  comment=comments[index2]._doc;
                     var  authorId=comment.authorId;
-                    //console.log(444,comment)
-                   // console.log(111,comment.commentLastId)
                     //如果commentLastId存在，就找到上一个人的名字
                     if(comment.commentLastId!="0"&&comment.commentLastId!=undefined){
                        // console.log(22222,result)

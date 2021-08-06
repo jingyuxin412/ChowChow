@@ -1,16 +1,14 @@
-//    数据更新不影响，我只要查找的时候，通过外键去另一个表查找就好了
-//    删除，要一并删除
 var  mongodb=require("mongoose");
 var  db=require("./db.js");
 
 var  USERPAGESIZE=8;
 
 var userSchema=new mongodb.Schema({
-    username:{type:String},//用户名字
-    password:{type:String},//用户密码
-    avatar:{type:String},//头像
-    role:{type:String},//角色身份
-    registDate:{type:Date}//注册时间
+    username: String ,
+    password: String, 
+    avatar: String, 
+    registDate:{type:Date},
+    salt: String
 })
 
 //创建静态方法-----------------------------------------------
