@@ -66,12 +66,14 @@ $(function() {
             method: "GET",
             success: ((posts) => {
                 if (posts == "-1") {
-    
+                    $('.pageCount').hide();
+                    $('.post-wrap').hide();
+                    $(".search-post-wrap").empty();
+                    $(".search-post-wrap").html("No such post!");
                 } else {
                     $('.pageCount').hide();
                     $('.post-wrap').hide();
                     $(".search-post-wrap").empty()
-
                     posts.forEach(function(post) {
                         var date=FormatDate(post.postDate)
                         var article = [
