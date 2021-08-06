@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 	<head lang="en">
 		<meta charset="UTF-8">
 		<title>Home Page</title>
@@ -19,7 +18,7 @@
 					</div>
 					<div class="search">
 						<input type="text" name="searchPosts" id="searchPosts" placeholder="Search Post Title"/>
-						<a onclick="search()" class="icon-fangda"></a>
+						<a id="searchPost" class="icon-fangda"></a>
 					</div>
 					<div class="nav">
 						<div class="user" style="display: none;">
@@ -36,9 +35,12 @@
 										<button href="javascript:;" >Cancel</button>
 									</div>
 								</div>
-								
 								<a href="http://localhost:8888/user/logout" class="logout">Quit</a>
 							</span>
+						</div>
+						<div class="help">
+							<a href="http://localhost:8888/helpPage.html">Help</a>
+
 						</div>
 						<div class="login">
 							<a href="http://localhost:8888/login.html">Login</a>
@@ -50,10 +52,8 @@
 							</a>
 						</div>
 					</div>
-			
 				</div>
 				<div class="shadeBg">
-				
 			</div>
 				<div class="showNewComment">
 					<a href="javascript:;" id="closeShow"></a>
@@ -63,11 +63,7 @@
 						</div>
 					</div>
 				</div>
-
-
-
 			</header>
-			<!--中间内容-->
 			<div class="webblog_main">
 				<div class="container">
 
@@ -82,10 +78,10 @@
 								</form>
 							</div>
 							<div class="post-wrap">
-								
 							</div>
-							
-
+							<div class="search-post-wrap">
+								<h2>Search Results</h2>
+							</div>
 						</div>
 						<div class="col-md-3">
 							<div class="text-box">
@@ -93,12 +89,11 @@
 									<img id="headshot" src="" />
 								</div>
 								<p class="welcome-tips" id="tourist">Welcome</p>
-								<!-- <p class="welcome-tips" id="member">欢迎你啊，会员</p> -->
 							</div>
 						</div>
 					</div>
 
-					<div class="pageCount clearfix">
+					<div class="pageCount">
 						<ul></ul>
 					</div>
 				</div>
