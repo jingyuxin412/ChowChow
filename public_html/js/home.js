@@ -56,6 +56,57 @@ $(function() {
         } else  {
             alert("Content or title cannot be NULL")
         }
-    })
+    });
 
+    $('#searchPost').on("click", function() {
+        var keyword = $('#searchPosts').val()
+        console.log(keyword);
+        $.ajax({
+            url: "http://localhost:8888/post/searchPost/?keyword=" + keyword,
+            method: "GET",
+            success: ((posts) => {
+                if (posts == "-1") {
+    
+                } else {
+                    $('.pageCount').hide();
+                    $('.post-wrap').hide();
+                    $(".search-post-wrap").empty()
+
+                    posts.forEach(function(post) {
+                        var date=FormatDate(post.postDate)
+                        var article = [
+                            '<article class="thread">',
+                            '<div class="thread_info">',
+                            '<div class="info_avatar">',
+                            '<a  target="_blank" href="http://localhost:8888/personPage.html?name=',post.author,
+                            ,'">',
+                            '<img class=\'authorAvatar\' src=',post.avatar ,'></a>',
+                            '</div>',
+                            '<div class="info_text">',
+                                '<p class="author">',post.author ,'</p>',
+                                '<p>', date, '</p>',
+                            '</div>',
+                            '<a class="delPost" postid="',
+                            post._id,'">','Delete this Post</a>',
+                            '</div>',
+                            '<div class="talk_content">',
+                            '<div class="title">',
+                            '<p><a href="http://localhost:8888/detailPage.html?postid=',
+                            post._id,'" target="_blank">',
+                            post.postTitle,
+                            '</a></p>',
+                            '</div>',
+                            '<div class="content">',
+                            '<p>', post.postContent, '</p>',
+                            '</div>',
+                            '</div>',
+                            '</article>'
+                        ].join("");
+
+                        $(".search-post-wrap").append($(article));
+                    })
+                }
+            })
+        });
+    });
 })

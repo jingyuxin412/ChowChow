@@ -1,5 +1,5 @@
 $(function () {
-    islogin(function (result, result2) {
+    islogin(function (result) {
         if(result==1){
             //已经登录
             $(".setPersonData").show()//设置个人资料
@@ -17,13 +17,17 @@ $(function () {
     //console.log( typeof  login)
     //console.log(login)
     //没有参数，而且没有登录是不能进来的
+    
+    console.log(loginer);
+
     if(!author&&!login){
         alert("You haven't login yet");
         location.href="http://localhost:8888/login.html";
     }
     var  url1="http://localhost:8888/post/getAllPostCount?name="+author+"&page=";
     var  url2="http://localhost:8888/post/getPersonPost?name="+author+"&page=";
-    if(author){
+    if(author) {
+        // $(".setPersonData").hide()
         $("#myComment").hide()
         if(author==loginer){
             $(".post-wrap").addClass("del")
@@ -33,6 +37,7 @@ $(function () {
         //没有登录，可以访问空间
         //获取用户
         //获取相应的用户发的帖子总数
+
         getPostCount(url1,function (page,count) {
             var pageSize=parseInt(page)+1;
             for(var i=1;i<pageSize;i++){
@@ -41,6 +46,7 @@ $(function () {
             }
             $(".text-box span").html(count)
         })
+
         //获取相应的用户及他发的帖子
         getUser(author, function (result) {
             //console.log(result)

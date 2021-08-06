@@ -51,12 +51,12 @@ function getpost(url,page){
             result.forEach(function(item) {
                 var date=FormatDate(item.postDate)
                 var article = [
-                    '<article class="talk">',
-                    '<div class="talk_info">',
+                    '<article class="thread">',
+                    '<div class="thread_info">',
                     '<div class="info_avatar">',
                     '<a  target="_blank" href="http://localhost:8888/personPage.html?name=',item.author,
                     ,'">',
-                    '<img src=',item.avatar ,'></a>',
+                    '<img class=\'authorAvatar\' src=',item.avatar ,'></a>',
                     '</div>',
                     '<div class="info_text">',
                         '<p class="author">',item.author ,'</p>',
@@ -110,7 +110,7 @@ function getUser(name,callback){
     })
 }
 
-function FormatDate (date) {
+function FormatDate(date) {
     var date=new Date(date)
     return date.toLocaleDateString()+" "+date.toLocaleTimeString();
 }
@@ -124,24 +124,4 @@ function getPostCount(url,callback){
             callback(result[0],result[1])
         })
     })
-}
-
-function search() {
-    var keyword = $('#searchPosts').val()
-    console.log(keyword);
-    $.ajax({
-        url: "http://localhost:8888/post/searchPost/?keyword=" + keyword,
-        method: "GET",
-        success: ((postsResult) => {
-            posts = JSON.parse(postsResult);
-            for (i in posts) {
-                console.log(posts[i]);
-                authorID = posts[i].authorId;
-                postID = posts[i]._id;
-                postTitle = posts[i].postTitle;
-                postDate = posts[i].postDate;
-                postContent = posts[i].postContent;
-            }
-        })
-    });
 }

@@ -57,14 +57,14 @@ app.get('/web/islogin', (req, res) => {
     }
 });
 
-app.get("/user/searchUserByID/", (req, res) => {
-    var id = req.query.id;
-    userservice.find({_id: id})
-    .exec((error, result) => {
-        res.json(result)
-    })
-    console.log(id);
-});
+// app.get("/user/searchUserByID/", (req, res) => {
+//     var id = req.query.id;
+//     userservice.findOne({_id: id})
+//     .exec((error, result) => {
+//         res.json(result)
+//     })
+//     console.log(id);
+// });
 
 app.post("/user/login", (req, res) => {
     var form=new formidable.IncomingForm();
@@ -251,7 +251,6 @@ app.post("/post/setPost", (req, res) => {
 });
 
 app.get("/post/getAllPost", (req, res) => {
-    var postArr=[];
     var page=req.query.page;
     postservice.getPagePost({},page,function (posts) {
         if(!posts.length) {
@@ -663,9 +662,26 @@ app.get("/post/showUserNewComment", (req, res) => {
 
 app.get('/post/searchPost/', (req, res) => {
     let keyword = req.query.keyword;
-    postservice.find({postTitle: keyword})
-    .exec((error, retVal) => {
-        res.json(retVal)
+    postservice.getAllPost({postTitle: keyword}, function(posts) {
+        if(!posts.length) {
+            res.send("-1");
+            return;
+        } else {
+            iterator(0)
+            function iterator(index) {
+                if(index==posts.length) {
+                    res.json(posts);
+                    return;
+                }
+                var post=posts[index]._doc;
+                var  authorId=post.authorId;
+                userservice.findOneUser({_id:authorId}, function (result2) {
+                    post.avatar=result2.avatar;
+                    post.author=result2.username;
+                    iterator(index+1)
+                });
+            }
+        }
     });
 });
 

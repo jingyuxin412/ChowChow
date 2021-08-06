@@ -5,7 +5,6 @@ var  db=require("./db.js");
 
 var  USERPAGESIZE=8;
 
-//创建schema
 var userSchema=new mongodb.Schema({
     username:{type:String},//用户名字
     password:{type:String},//用户密码
@@ -46,24 +45,12 @@ userSchema.statics.findAllUser= function (page,callback) {
     })
 }
 
-//删除用户
-userSchema.statics.delUser= function (json,callback) {
-    this.model("user").remove(json, function (err,result) {
-        if(err){
-            console.log(err)
-            return
-        }
-        callback(result)
-    })
-}
-
 userSchema.statics.findOneUser= function (json,callback) {
     this.model("user").findOne(json).sort({registDate:-1}).exec(function (err,result) {
         if(err){
             console.log("查找错误")
             return
         }
-        //result是一个数组
         callback(result)
     })
 }
