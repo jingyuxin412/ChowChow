@@ -51,12 +51,12 @@ function getpost(url,page){
             result.forEach(function(item) {
                 var date=FormatDate(item.postDate)
                 var article = [
-                    '<article class="talk">',
-                    '<div class="talk_info">',
+                    '<article class="thread">',
+                    '<div class="thread_info">',
                     '<div class="info_avatar">',
                     '<a  target="_blank" href="http://localhost:8888/personPage.html?name=',item.author,
                     ,'">',
-                    '<img src=',item.avatar ,'></a>',
+                    '<img class=\'authorAvatar\' src=',item.avatar ,'></a>',
                     '</div>',
                     '<div class="info_text">',
                         '<p class="author">',item.author ,'</p>',
@@ -103,15 +103,14 @@ function getpost(url,page){
 function getUser(name,callback){
     $.ajax({
         url: "http://localhost:8888/user/findUser?name=" + name,
-        methor: "GET",
+        method: "GET",
         success: ((result) => {
             callback(result)
         })
     })
 }
 
-//时间格式化
-function FormatDate (date) {
+function FormatDate(date) {
     var date=new Date(date)
     return date.toLocaleDateString()+" "+date.toLocaleTimeString();
 }
@@ -120,7 +119,7 @@ function FormatDate (date) {
 function getPostCount(url,callback){
     $.ajax({
         url: url,
-        methor: "GET",
+        method: "GET",
         success: ((result) => {
             callback(result[0],result[1])
         })

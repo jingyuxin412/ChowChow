@@ -2,7 +2,7 @@
 var  mongodb=require("mongoose");
 var  db=require("./db.js");
 
-var  PAGESIZE=10;
+var  PAGESIZE=5;
 //创建schema
 var postSchema=new mongodb.Schema({
     authorId:{type:String},//关联的用户的id
@@ -38,7 +38,6 @@ postSchema.statics.getDetailPost= function (json,callback) {
 
 //根据页数返回帖子
 postSchema.statics.getPagePost= function (json,page,callback) {
-
     var skipCount=(page-1)*PAGESIZE;
     this.model("post").find(json).limit(PAGESIZE).skip(skipCount).sort({postDate:-1}).exec(function (err,result) {
         if(err){
