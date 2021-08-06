@@ -51,24 +51,38 @@ width: 25px;
 height: 25px;
 padding:0%;
 }
+.help{
+    color:rgb(216, 189, 101);
+
+}
 .nav{
     position: relative;
     top:25%;
     left:70%;
     width:25%;
-}
-.login a{
-    
     color: rgb(216, 189, 101);
     text-shadow: 0 0 1px black;
-    padding-left: 50%;
+    
+}
+#username{
+    color: rgb(216, 189, 101);
+    text-shadow: 0 0 1px black;
+    
+   
+}
+.logout{
+    padding-left: 10%;
+    color: rgb(216, 189, 101);
+    text-shadow: 0 0 1px black;
+    left:10%
+    
 
 }
 .homepage a{
     
     color: rgb(216, 189, 101);
     text-shadow: 0 0 1px black;
-    padding-left: 50%;
+    padding-left: 0%;
 
 }
 
@@ -83,6 +97,8 @@ padding:0%;
 }
 
 .post-clearfix{
+    position: relative;
+    left:25%;
     padding:1em;
   border: 1em solid transparent;
   background: linear-gradient(white,white) padding-box,repeating-linear-gradient(-45deg, red 0, red 12.5%, transparent 0, transparent 25%, #58a 0, #58a 37.5%, transparent 0, transparent 50%) 0/5em 5em;
@@ -99,12 +115,20 @@ padding:0%;
 
 
 .post-wrap{
+    left:25%;
     margin-top: 2%;
     border: 1em solid transparent;
-  background: linear-gradient(white,white) padding-box,repeating-linear-gradient(-45deg, red 0, red 12.5%, transparent 0, transparent 25%, #58a 0, #58a 37.5%, transparent 0, transparent 50%) 0/5em 5em;
-
+    background: linear-gradient(white,white) padding-box,repeating-linear-gradient(-45deg, red 0, red 12.5%, transparent 0, transparent 25%, #58a 0, #58a 37.5%, transparent 0, transparent 50%) 0/5em 5em;
+    position: relative;
     width:50%;
 }
+article.thread{
+    position: relative;
+    text-align: center;
+    padding-top: 2%;
+    border: 1px solid black;
+}
+
 #icon-person{
     margin-top: 3%;
     height:35px;
@@ -115,4 +139,36 @@ padding:0%;
     margin-top: 3%;
     height:35px;
     width:35px;
+}
+.authorAvatar{
+    border: orange,solid,5px;
+    position: relative;
+    margin-top: 3%;
+    height:50px;
+    width:50px;
+
+}
+
+.thread{
+    border: black，solid,2px;
+}
+
+.search-post-wrap h2{
+    position: relative;
+    left:40%;
+}
+.text-box{
+    text-align: center;
+    left:75%;
+    width:15%;
+    position: relative;
+    padding-top: 10px;
+    background-color: rgb(250, 248, 248,0.6);
+    
+   
+    border:2px dotted skyblue;
+}
+ul{
+    position: relative;
+    left:80%;
 }
