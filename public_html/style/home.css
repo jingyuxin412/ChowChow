@@ -159,10 +159,11 @@ article.thread{
     left:40%;
 }
 .text-box{
+    top:15%;
     text-align: center;
-    left:75%;
+    left:70%;
     width:15%;
-    position: relative;
+    position: absolute;
     padding-top: 10px;
     background-color: rgb(250, 248, 248,0.6);
     
