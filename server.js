@@ -235,7 +235,7 @@ app.post("/post/setPost", (req, res) => {
             var  username=req.session.username;
             if(!username){
                 res.send("nologin")
-                return ;
+                return;
             }
             userservice.findOneUser({username:username}, function (result) {
 
@@ -312,24 +312,22 @@ app.get("/post/getPersonPost", (req, res) => {
     var username=req.query.name;
     var page=req.query.page;
     userservice.findOneUser({username:username}, function (result) {
-        if (result) {
-            var  authorId=result._id
-            var  avatar=result.avatar;
-            var  author=result.username;
+        var  authorId=result._id
+        var  avatar=result.avatar;
+        var  author=result.username;
 
-            postservice.getPagePost({"authorId":authorId},page, function (posts) {
-                if(!posts.length) {
-                    res.send("-1")
-                    return;
-                }
-                posts.forEach(function (item,index) {
-                    var post=item._doc;
-                    post.avatar=avatar;
-                    post.author=author
-                })
-                res.json(posts)
+        postservice.getPagePost({"authorId":authorId},page, function (posts) {
+            if(!posts.length) {
+                res.send("-1")
+                return;
+            }
+            posts.forEach(function (item,index) {
+                var post=item._doc;
+                post.avatar=avatar;
+                post.author=author
             })
-        }
+            res.json(posts)
+        })
     })
 });
 

@@ -1,6 +1,6 @@
 $(function() {    
     var url="/post/getAllPost?page=";
-    getPostCount("/getAllPostCount",function (page) {
+    getPostCount("/post/getAllPostCount",function (page) {
         var pageSize=parseInt(page)+1;
         for(var i=1;i<pageSize;i++){
             var page=$("<li></li>").html(i);
