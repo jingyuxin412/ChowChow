@@ -16,7 +16,7 @@ $(function() {
 	getNewPost()
 
 	$("#commentBtn").on("click", function() {
-		var url = "http://localhost:8888/post/setComment";
+		var url = "/post/setComment";
 		$.get(url, {
 			postid: postid,
 			commentContent: $("#commentConet").val()
@@ -34,10 +34,10 @@ $(function() {
 	})
 
 	function getNewPost() {
-		$.get("http://localhost:8888/post/getDetailPost?postid=" + postid, function(result) {
+		$.get("/post/getDetailPost?postid=" + postid, function(result) {
 			if (result == "-1") {
 				alert("No such post")
-				location.href="http://localhost:8888/homePage.html";
+				location.href="./homePage.html";
 			}
 			$(".talk_info .info_avatar img").attr("src", result.avatar);
 			$(".talk_info .info_text .author").html(result.author)

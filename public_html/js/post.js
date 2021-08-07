@@ -2,7 +2,7 @@
 
 function islogin(callback){
     $.ajax({
-        url: "http://localhost:8888/web/islogin",
+        url: "/web/islogin",
         method: "GET",
         success: ((result) => {
             if (result == "-1") {
@@ -41,7 +41,7 @@ function islogin(callback){
                 if(callback){
                     callback(1,result)
                 }
-                $("#personPage").attr("href","http://localhost:8888/personPage.html?name="+result.username)
+                $("#personPage").attr("href","./personPage.html?name="+result.username)
 
                 $(".avatar img").attr("src", "./"+ result.avatar)
                 $(".post").show()
@@ -67,7 +67,7 @@ function getpost(url,page){
                         '<article class="thread">',
                         '<div class="thread_info">',
                         '<div class="info_avatar">',
-                        '<a  target="_blank" href="http://localhost:8888/personPage.html?name=',item.author,
+                        '<a  target="_blank" href="./personPage.html?name=',item.author,
                         ,'">',
                         '<img class=\'authorAvatar\' src=',item.avatar ,'></a>',
                         '</div>',
@@ -80,7 +80,7 @@ function getpost(url,page){
                         '</div>',
                         '<div class="talk_content">',
                         '<div class="title">',
-                        '<p><a href="http://localhost:8888/detailPage.html?postid=',
+                        '<p><a href="./detailPage.html?postid=',
                         item._id,'" target="_blank">',
                         item.postTitle,
                         '</a></p>',
@@ -98,26 +98,11 @@ function getpost(url,page){
             }
         })
     })
-    
-    // $(".post-wrap").on("click",".delPost",function(){
-    //     var url= "http://localhost:8888/post/delPost?postid=";
-    //      var postid=$(this).attr("postid");
-    //      if(confirm("You sure?")){
-    //          $.get(url+postid, function (result) {
-    //              console.log(result)
-    //              if(result.ok==1){
-    //                  alert("Success")
-    //                  location.reload()
-    //              }
-    //              console.log(result)
-    //          })
-    //      }
-    //  })
 }
 
 function getUser(name,callback){
     $.ajax({
-        url: "http://localhost:8888/user/findUser?name=" + name,
+        url: "/user/findUser?name=" + name,
         method: "GET",
         success: ((result) => {
             callback(result)
@@ -142,7 +127,7 @@ function getPostCount(url,callback){
 
 function logout() {
     $.ajax({
-        url: "http://localhost:8888/user/logout",
+        url: "./user/logout",
         method: "GET", 
         success: ((retVal) => {
             if (retVal == "1") {

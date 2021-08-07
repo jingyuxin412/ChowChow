@@ -2,7 +2,7 @@ function login() {
     let username = $('#username').val();
     let password = $('#password').val();
     $.ajax({
-        url: 'http://localhost:8888/user/login',
+        url: '/user/login',
         method: 'POST',
         data: {
             username: username,
@@ -11,7 +11,7 @@ function login() {
         success: ((message) => {
             if (message == '1') {
                 alert("Login Success!");
-                window.location.href="http://localhost:8888/homePage.html";
+                window.location.href="/homePage.html";
             } else {
                 $("#warnings").show().html("Wrong Username/Password!");
             }

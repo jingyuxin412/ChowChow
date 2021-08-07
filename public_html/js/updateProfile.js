@@ -1,12 +1,12 @@
 function update() {
     $.ajax({
-        url: 'http://localhost:8888/web/islogin',
+        url: '/web/islogin',
         method: 'GET',
         success: ((message) => {
             console.log(message);
             if(message=="-1"){
                 alert("You haven't login yet")
-                location.href="http://localhost:8888/login.html"
+                location.href="./login.html"
             } else {
                 var username =sessionStorage.getItem("loginer");
                 $("#username").val(username);
@@ -18,23 +18,23 @@ function update() {
 
 $(function() {
     $.ajax({
-        url: "http://localhost:8888/web/islogin",
+        url: "/web/islogin",
         method: 'GET',
         success: ((message) => {
             if(message=="-1") {
                 alert("You haven't login yet")
-                location.href="http://localhost:8888/login.html"
+                location.href="./login.html"
             } else {
                 $("#username").val(sessionStorage.getItem("loginer"))
                 $("#form").submit(function() {
                     $(this).ajaxSubmit({
-                        url: "http://localhost:8888/user/updateUser",
+                        url: "/user/updateUser",
                         type:'POST',
                         success:function (result){
                             console.log(result)
                             if(result=="1") {
                                 alert("Success")
-                                location.href="http://localhost:8888/homePage.html"
+                                location.href="./homePage.html"
                             } else if(result=="-1"){
                                 alert("Failed");
                                 location.reload()

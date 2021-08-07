@@ -1,4 +1,8 @@
+/* <div class="newCommentAvatar"><img src="123.jpeg"></div> */
 
+.newCommentAvatar img {
+    width:90px;
+}
 
 html {
     overflow: scroll;

@@ -1,6 +1,6 @@
 $(function () {
 	$.ajax({
-		url: "http://localhost:8888/post/showUserAllComment",
+		url: "/post/showUserAllComment",
 		method: "GET",
 		success: ((result) => {
 			console.log("1")
@@ -66,7 +66,7 @@ $(function () {
 									p.author +
 								'</span>'+
 								'<span>&nbsp; : &nbsp; </span></div>' +
-								'<a href=\"http://localhost:8888/detailPage.html?postid=' + p.postId +  '\"> <div ' + 
+								'<a href=\"./detailPage.html?postid=' + p.postId +  '\"> <div ' + 
 								'  class="nestcommentContent">' + p.commentContent + '</div></a>' +
 								'</div>');
 						post.find(".commentIncomment").append(cmtParent)

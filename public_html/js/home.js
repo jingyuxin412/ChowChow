@@ -1,6 +1,6 @@
 $(function() {    
-    var url="http://localhost:8888/post/getAllPost?page=";
-    getPostCount("http://localhost:8888/post/getAllPostCount",function (page) {
+    var url="/post/getAllPost?page=";
+    getPostCount("/getAllPostCount",function (page) {
         var pageSize=parseInt(page)+1;
         for(var i=1;i<pageSize;i++){
             var page=$("<li></li>").html(i);
@@ -19,7 +19,7 @@ $(function() {
         var title=$("#postTitle").val()
         var val = $("#postContent").val();
         if(val&&title) {
-            $.post("http://localhost:8888/post/setPost", $("#form").serialize(), function(result) {
+            $.post("/post/setPost", $("#form").serialize(), function(result) {
                 if(result == "1") {
                     alert("Success")
                     $("#form")[0].reset()
@@ -38,7 +38,7 @@ $(function() {
         var keyword = $('#searchPosts').val()
         console.log(keyword);
         $.ajax({
-            url: "http://localhost:8888/post/searchPost/?keyword=" + keyword,
+            url: "/post/searchPost/?keyword=" + keyword,
             method: "GET",
             success: ((posts) => {
                 console.log(posts);
@@ -59,7 +59,7 @@ $(function() {
                             '<article class="thread">',
                             '<div class="thread_info">',
                             '<div class="info_avatar">',
-                            '<a  target="_blank" href="http://localhost:8888/personPage.html?name=',post.author,
+                            '<a  target="_blank" href="./personPage.html?name=',post.author,
                             ,'">',
                             '<img class=\'authorAvatar\' src=',post.avatar ,'></a>',
                             '</div>',
@@ -72,7 +72,7 @@ $(function() {
                             '</div>',
                             '<div class="talk_content">',
                             '<div class="title">',
-                            '<p><a href="http://localhost:8888/detailPage.html?postid=',
+                            '<p><a href="./detailPage.html?postid=',
                             post._id,'" target="_blank">',
                             post.postTitle,
                             '</a></p>',
@@ -101,7 +101,7 @@ $(function() {
             $(".shadeBg").show()
             $(".webblog_main").hide()
             $(".showNewComment").addClass("on")
-            $.get("http://localhost:8888/post/showUserNewComment", function (result) {
+            $.get("/post/showUserNewComment", function (result) {
 
                 createNewComment(result)
                 console.log(result)
@@ -137,19 +137,19 @@ function createNewComment(result){
             '<div class="newComment-content"><p>'+
             item.commentContent+
             '</p><div class="newComment-opt">'+
-            '<a href="http://localhost:8888/detailPage.html?postid='+item.postId+'">Detail</a>'+
+            '<a href="./detailPage.html?postid='+item.postId+'">Detail</a>'+
             '</div></div></div>'+
-            '<div class="post-part">'+
-            '<div class="postAvatar">'+
-            '<img src="'+item.postAvatar+'"/>'+
-            '</div>'+
-            '<div class="postAuthorName">'+
-            '<a href="javascript:;">'+item.postAuthor+' </a>:' +
-            '</div>'+
-            '<div class="posttitle">'+
-            item.postTitle+
-            '</div>'+
-            '</div>'+
+            // '<div class="post-part">'+
+            // '<div class="postAvatar">'+
+            // '<img src="'+item.postAvatar+'"/>'+
+            // '</div>'+
+            // '<div class="postAuthorName">'+
+            // '<a href="javascript:;">'+item.postAuthor+' </a>:' +
+            // '</div>'+
+            // '<div class="posttitle">'+
+            // item.postTitle+
+            // '</div>'+
+            // '</div>'+
             '</article>');
         if(item.lastAuthor){
             var lastComment=$(
@@ -172,7 +172,7 @@ function createNewComment(result){
 
 function logout() {
     $.ajax({
-        url: "http://localhost:8888/user/logout",
+        url: "/user/logout",
         method: "GET", 
         success: ((retVal) => {
             if (retVal == "1") {

@@ -7,7 +7,7 @@ function register() {
         $("#warnings").show().html("Password did not match!")
     } else {
         $.ajax({
-            url: 'http://localhost:8888/user/regist',
+            url: '/user/regist',
             method: 'POST',
             data: {
                 username: username,
@@ -16,7 +16,7 @@ function register() {
             success: ((message) => {
                 if (message == "1") {
                     alert("Register Success!");
-                    location.href="http://localhost:8888/homePage.html";
+                    location.href="./homePage.html";
                     sessionStorage.setItem("login",1);
                 } else {
                     $("#warnings").show().html("Username is already exit!");

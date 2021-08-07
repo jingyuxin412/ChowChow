@@ -16,10 +16,10 @@ $(function () {
 
     if(!author&&!login){
         alert("You haven't login yet");
-        location.href="http://localhost:8888/login.html";
+        location.href="./login.html";
     }
-    var  url1="http://localhost:8888/post/getAllPostCount?name="+author+"&page=";
-    var  url2="http://localhost:8888/post/getPersonPost?name="+author+"&page=";
+    var  url1="/post/getAllPostCount?name="+author+"&page=";
+    var  url2="/post/getPersonPost?name="+author+"&page=";
     if(author) {
         $("#myComment").hide()
         if(author==loginer){
