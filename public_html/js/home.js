@@ -57,11 +57,10 @@ $(function() {
                         var date=FormatDate(post.postDate)
                         var article = 
                             '<article class="thread">' + '<div class="thread_info">' +
-                            '<div class="info_avatar">' + '<a  target="_blank" href="./personPage.html?name=' + post.author +
-                             + '">' + '<img class=\'authorAvatar\' src='+ post.avatar + '></a>' + 
+                            '<div class="info_avatar">' + '<a  target="_blank" >' + '<img class=\'authorAvatar\' src='+ post.avatar + '></a>' + 
                             '</div>' + '<div class="info_text">'+ '<p class="author">' + post.author + '</p>' + '<p>'+ date+ '</p>'+
                             '</div>'+ '</div>'+'<div class="talk_content">'+
-                            '<div class="title">'+'<p><a href="./detailPage.html?postid='+
+                            '<div class="title">'+'<p><a href="/detailPage.html?postid='+
                             post._id + '" target="_blank">'+post.postTitle+
                             '</a></p>'+'</div>'+'<div class="content">'+
                             '<p>' + post.postContent + '</p>'+'</div>'+

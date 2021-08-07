@@ -41,7 +41,7 @@ function islogin(callback){
                 if(callback){
                     callback(1,result)
                 }
-                $("#personPage").attr("href","./personPage.html?name="+result.username)
+                $("#personPage").attr("href","/personPage.html?name="+result.username)
 
                 $(".avatar img").attr("src", "./"+ result.avatar)
                 $(".post").show()
@@ -64,10 +64,9 @@ function getpost(url,page){
                     console.log(item);
                     var date=FormatDate(item.postDate)
                     var article = [
-                        '<article class="thread"><div class="thread_info"><div class="info_avatar"><a  target="_blank" href="./personPage.html?name=',item.author,
-                        ,'"><img class=\'authorAvatar\' src=',item.avatar ,'></a></div>',
+                        '<article class="thread"><div class="thread_info"><div class="info_avatar"><a  target="_blank"><img class=\'authorAvatar\' src=',item.avatar ,'></a></div>',
                         '<div class="info_text"><p class="author">',item.author ,'</p><p>', date, '</p></div>',
-                        '</div><div class="talk_content"><div class="title"><p><a href="./detailPage.html?postid=',
+                        '</div><div class="talk_content"><div class="title"><p><a href="/detailPage.html?postid=',
                         item._id,'" target="_blank">',
                         item.postTitle,
                         '</a></p></div><div class="content"><p>', item.postContent, '</p>',

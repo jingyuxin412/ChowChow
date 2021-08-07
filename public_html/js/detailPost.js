@@ -37,7 +37,7 @@ $(function() {
 		$.get("/post/getDetailPost?postid=" + postid, function(result) {
 			if (result == "-1") {
 				alert("No such post")
-				location.href="./homePage.html";
+				location.href="/homePage.html";
 			}
 			$(".talk_info .info_avatar img").attr("src", result.avatar);
 			$(".talk_info .info_text .author").html(result.author)

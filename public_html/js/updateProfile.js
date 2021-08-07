@@ -6,7 +6,7 @@ function update() {
             console.log(message);
             if(message=="-1"){
                 alert("You haven't login yet")
-                location.href="./login.html"
+                location.href="/login.html"
             } else {
                 var username =sessionStorage.getItem("loginer");
                 $("#username").val(username);
@@ -23,7 +23,7 @@ $(function() {
         success: ((message) => {
             if(message=="-1") {
                 alert("You haven't login yet")
-                location.href="./login.html"
+                location.href="/login.html"
             } else {
                 $("#username").val(sessionStorage.getItem("loginer"))
                 $("#form").submit(function() {
@@ -34,7 +34,7 @@ $(function() {
                             console.log(result)
                             if(result=="1") {
                                 alert("Success")
-                                location.href="./homePage.html"
+                                location.href="/homePage.html"
                             } else if(result=="-1"){
                                 alert("Failed");
                                 location.reload()

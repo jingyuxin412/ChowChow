@@ -16,7 +16,7 @@ function register() {
             success: ((message) => {
                 if (message == "1") {
                     alert("Register Success!");
-                    location.href="./homePage.html";
+                    location.href="/homePage.html";
                     sessionStorage.setItem("login",1);
                 } else {
                     $("#warnings").show().html("Username is already exit!");
