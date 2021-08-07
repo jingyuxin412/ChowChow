@@ -1,5 +1,4 @@
 $(function() {
-	//判断是否登录
 	islogin(function(result) {
 		if(result == 1) {
 			$(".comment-list").addClass("canComment")
@@ -12,15 +11,11 @@ $(function() {
 		}
 	})
 
-	//获取帖子的id
 	var postid = location.search.slice(8);
-	//console.log(postid)
 
 	getNewPost()
 
-	//发表评论,直接在那里评论的，都是没有父评论的
 	$("#commentBtn").on("click", function() {
-		//获取评论内容
 		var url = "http://localhost:8888/post/setComment";
 		$.get(url, {
 			postid: postid,
@@ -39,8 +34,11 @@ $(function() {
 	})
 
 	function getNewPost() {
-		//发请求获取对应的帖子
 		$.get("http://localhost:8888/post/getDetailPost?postid=" + postid, function(result) {
+			if (result == "-1") {
+				alert("No such post")
+				location.href="http://localhost:8888/homePage.html";
+			}
 			$(".talk_info .info_avatar img").attr("src", result.avatar);
 			$(".talk_info .info_text .author").html(result.author)
 			$(".talk_content .title p").html(result.postTitle);
@@ -48,11 +46,7 @@ $(function() {
 			$(".talk_content").height($(".talk_detail").height())
 			$(".talk_info").height($(".talk_detail").outerHeight())
 			$("#commentCount span").html(result.commentcount)
-				//加载评论------------------------------------------------
-				//console.log(result)
-				//存储分类父子评论
 			var commentColletion = []
-				//选出没有lastid的评论
 			result.comment.forEach(function(item, index) {
 					if(item.commentLastId == "0"||!item.commentLastId) {
 						commentColletion.push({
@@ -61,7 +55,6 @@ $(function() {
 						});
 					}
 				})
-				//把子评论组合存进相应的父评论
 			commentColletion.forEach(function(item1, index1) {
 					var commentChild = [];
 					result.comment.forEach(function(item2, index2) {
@@ -70,7 +63,6 @@ $(function() {
 						}
 					})
 				})
-				//把评论根据时间排序
 			commentColletion.forEach(function(item, index) {
 					item.child.sort(function(v1, v2) {
 						v1 = new Date(v1.commentDate);
@@ -84,14 +76,11 @@ $(function() {
 						}
 					})
 				})
-				//console.log(commentColletion)
 
 			commentColletion.forEach(function(item, index) {
 				var p = item.parent;
 				var c = item.child;
 				var date = FormatDate(p.commentDate)
-					//item---parent,child
-					//加载父评论-------------------------------------------
 				var cmtParent = $(
 					'<article class="comment" >' +
 					'<div class="comment-list-inner clearfix">' +
@@ -109,13 +98,8 @@ $(function() {
 					'<p  class="nestcommentContent">' + p.commentContent + '</p>' +
 					'</div>' +
 					'<p class="commentDate">Post Date ' + date + '</p>' +
-					'<div class="comment-opt">'+
-					'<a commentId="' + p._id + '" class="commentfor" href="javascript:;">Reply</a>' +
-					'<a commentId="' + p._id + '" class="commentDel" href="javascript:;">Delete</a>' +
-					'</div>'+
 					'</div>' +
 					'</article>');
-				//加载子评论----------------------------------------
 				c.forEach(function(item, index) {
 					var cmtChild = $(
 						'<div class="nestComment clearfix">' +

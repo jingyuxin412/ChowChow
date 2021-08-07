@@ -7,12 +7,14 @@
 		<script src="./jquery.js"></script>
 		<script src="./js/post.js"></script>
 		<script src="./js/home.js"></script>
+		<script>
+			setInterval(islogin, 1000);
+		</script>
 	</head>
 	<body>
 		<div class="webblog home">
 			<header class="webblog_top ">
 				<div class="container">
-
 					<div class="webName">
 						<h1>ChowChow</h1>
 					</div>
@@ -27,16 +29,19 @@
 									<i class="icon-person"></i>
 									<span id="username"></span>
 								</a>
-								<div class="commentPrompt">
+								<div class="commentPrompt" onload="setInterval(checkNewComments, 100)">
 									<div class="comment-inner"></div>
-									<a class="newCount">21</a>
 									<div class="iknow">
 										<button href="javascript:;" >Details</button>
 										<button href="javascript:;" >Cancel</button>
 									</div>
 								</div>
-								<a href="http://localhost:8888/user/logout" class="logout">Quit</a>
+								<a onclick="logout()" class="logout">Quit</a>
 							</span>
+						</div>
+						<div class="help">
+							<a href="http://localhost:8888/helpPage.html">Help</a>
+
 						</div>
 						<div class="login">
 							<a href="http://localhost:8888/login.html">Login</a>

@@ -38,7 +38,7 @@ html {
     
     color: rgb(194, 153, 169);
     text-shadow: 0 0 1px black;
-    padding-left: 80%;
+    
 
 }
 
@@ -68,4 +68,21 @@ html {
 
     width:50%;
 }
-
+#username{
+    left:70%;
+    color: rgb(194, 153, 169);
+    text-shadow: 0 0 1px black;
+    
+   
+}
+.logout{
+    color: rgb(194, 153, 169);
+    text-shadow: 0 0 1px black;
+    padding-left:10%
+}
+.nav{
+    position: relative;
+    top:25%;
+    left:70%;
+    width:25%;
+}

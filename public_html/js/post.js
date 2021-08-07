@@ -1,3 +1,5 @@
+
+
 function islogin(callback){
     $.ajax({
         url: "http://localhost:8888/web/islogin",
@@ -9,11 +11,15 @@ function islogin(callback){
                 }
                 $(".user").hide();
                 $(".login").show();
+                $(".text-box").hide();
                 sessionStorage.removeItem("login");
                 sessionStorage.removeItem("loginer");
                 sessionStorage.removeItem("loginAvatar");
                 sessionStorage.removeItem("loginRole")
                 sessionStorage.removeItem("newComment");
+                $(".avatar img").attr("src","./duck.jpeg")
+                $(".post").hide();
+                $("#tourist").show()
             } else {
                 $(".user").show();
                 $(".login").hide();
@@ -24,68 +30,75 @@ function islogin(callback){
                 sessionStorage.setItem("newComment",JSON.stringify(result.newComment));
                 $("#username").html(result.username)
     
-                //只有新评论不为0的时候，才显示提示框
                 if(parseInt(result.newcommentCount)){
                     $(".commentPrompt").fadeIn(500);
-                    $(".commentPrompt .comment-inner").html("你有新评论哦");
-                    $(".newCount").html(result.newcommentCount)
-                }else{
+                    $(".commentPrompt .comment-inner").html("You have new comment(s)!");
+                } else {
                     $(".commentPrompt").hide(500);
                 }
                 if(callback){
                     callback(1,result)
                 }
                 $("#personPage").attr("href","http://localhost:8888/personPage.html?name="+result.username)
+
+                $(".avatar img").attr("src", "./"+ result.avatar)
+                $(".post").show()
+                $("#member").show()
             }
         })
     })
 }
 
-//获取帖子
 function getpost(url,page){
-    $.ajax({
+    $.ajax ({
         url: url + page,
         method: "GET",
         success: ((result) => {
             $(".post-wrap").empty()
-            result.forEach(function(item) {
-                var date=FormatDate(item.postDate)
-                var article = [
-                    '<article class="thread">',
-                    '<div class="thread_info">',
-                    '<div class="info_avatar">',
-                    '<a  target="_blank" href="http://localhost:8888/personPage.html?name=',item.author,
-                    ,'">',
-                    '<img class=\'authorAvatar\' src=',item.avatar ,'></a>',
-                    '</div>',
-                    '<div class="info_text">',
-                        '<p class="author">',item.author ,'</p>',
-                        '<p>', date, '</p>',
-                    '</div>',
-                    '<a class="delPost" postid="',
-                    item._id,'">','Delete this Post</a>',
-                    '</div>',
-                    '<div class="talk_content">',
-                    '<div class="title">',
-                    '<p><a href="http://localhost:8888/detailPage.html?postid=',
-                    item._id,'" target="_blank">',
-                    item.postTitle,
-                    '</a></p>',
-                    '</div>',
-                    '<div class="content">',
-                    '<p>', item.postContent, '</p>',
-                    '</div>',
-                    '</div>',
-                    '</article>'
-                ].join("");
-                $(".post-wrap").append($(article));
-            })
+            $(".search-post-wrap").hide();
+            if (result.length != 0) {
+                result.forEach(function(item) {
+                    console.log(item);
+                    var date=FormatDate(item.postDate)
+                    var article = [
+                        '<article class="thread">',
+                        '<div class="thread_info">',
+                        '<div class="info_avatar">',
+                        '<a  target="_blank" href="http://localhost:8888/personPage.html?name=',item.author,
+                        ,'">',
+                        '<img class=\'authorAvatar\' src=',item.avatar ,'></a>',
+                        '</div>',
+                        '<div class="info_text">',
+                            '<p class="author">',item.author ,'</p>',
+                            '<p>', date, '</p>',
+                        '</div>',
+                        '<a class="delPost" postid="',
+                        item._id,'">','Delete this Post</a>',
+                        '</div>',
+                        '<div class="talk_content">',
+                        '<div class="title">',
+                        '<p><a href="http://localhost:8888/detailPage.html?postid=',
+                        item._id,'" target="_blank">',
+                        item.postTitle,
+                        '</a></p>',
+                        '</div>',
+                        '<div class="content">',
+                        '<p>', item.postContent, '</p>',
+                        '</div>',
+                        '</div>',
+                        '</article>'
+                    ].join("");
+                    $(".post-wrap").append($(article));
+                })
+            } else {
+                $(".post-wrap").html("<h1>No posts! You can post a thread after login.</h1>");
+            }
         })
     })
+    
     $(".post-wrap").on("click",".delPost",function(){
         var url= "http://localhost:8888/post/delPost?postid=";
          var postid=$(this).attr("postid");
- 
          if(confirm("You sure?")){
              $.get(url+postid, function (result) {
                  console.log(result)
@@ -99,7 +112,6 @@ function getpost(url,page){
      })
 }
 
-//获取用户
 function getUser(name,callback){
     $.ajax({
         url: "http://localhost:8888/user/findUser?name=" + name,
@@ -115,13 +127,25 @@ function FormatDate(date) {
     return date.toLocaleDateString()+" "+date.toLocaleTimeString();
 }
 
-//获取帖子总数
 function getPostCount(url,callback){
     $.ajax({
         url: url,
         method: "GET",
         success: ((result) => {
             callback(result[0],result[1])
+        })
+    })
+}
+
+function logout() {
+    $.ajax({
+        url: "http://localhost:8888/user/logout",
+        method: "GET", 
+        success: ((retVal) => {
+            if (retVal == "1") {
+                console.log("Logout success!");
+                alert("Logout success!");                
+            }
         })
     })
 }
