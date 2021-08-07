@@ -54,6 +54,7 @@ function getpost(url,page){
         url: url + page,
         method: "GET",
         success: ((result) => {
+
             $(".post-wrap").empty()
             $(".search-post-wrap").hide();
             if (result.length != 0) {
@@ -72,8 +73,8 @@ function getpost(url,page){
                             '<p class="author">',item.author ,'</p>',
                             '<p>', date, '</p>',
                         '</div>',
-                        '<a class="delPost" postid="',
-                        item._id,'">','Delete this Post</a>',
+                        // '<a class="delPost" postid="',
+                        // item._id,'">','Delete this Post</a>',
                         '</div>',
                         '<div class="talk_content">',
                         '<div class="title">',
@@ -96,20 +97,20 @@ function getpost(url,page){
         })
     })
     
-    $(".post-wrap").on("click",".delPost",function(){
-        var url= "http://localhost:8888/post/delPost?postid=";
-         var postid=$(this).attr("postid");
-         if(confirm("You sure?")){
-             $.get(url+postid, function (result) {
-                 console.log(result)
-                 if(result.ok==1){
-                     alert("Success")
-                     location.reload()
-                 }
-                 console.log(result)
-             })
-         }
-     })
+    // $(".post-wrap").on("click",".delPost",function(){
+    //     var url= "http://localhost:8888/post/delPost?postid=";
+    //      var postid=$(this).attr("postid");
+    //      if(confirm("You sure?")){
+    //          $.get(url+postid, function (result) {
+    //              console.log(result)
+    //              if(result.ok==1){
+    //                  alert("Success")
+    //                  location.reload()
+    //              }
+    //              console.log(result)
+    //          })
+    //      }
+    //  })
 }
 
 function getUser(name,callback){
