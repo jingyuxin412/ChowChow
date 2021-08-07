@@ -32,6 +32,7 @@ app.all("*",function(req,res,next){
     next()
 })
 
+
 app.get('/', (req, res) => {
     res.redirect("homePage.html")
 });
@@ -576,4 +577,6 @@ app.get('/post/searchPost/', (req, res) => {
     });
 });
 
-app.listen(8888);
+app.listen(3000);
+
+console.log("listen at 3000")

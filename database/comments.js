@@ -1,16 +1,16 @@
 var  mongodb=require("mongoose");
-var  db=require("./db.js");
-
+var mongoose=require("mongoose");
+var db=mongoose.createConnection("mongodb://127.0.0.1:27017/forum");
 
 var commentSchema=new mongodb.Schema({
-    authorId:{type:String},
-    postId:{type:String},
-    commentContent:{type:String},
-    commentDate:{type:Date},
-    commentHeaderId:{type:String},
-    commentLastId:{type:String},
-    newCom:{type:Number},
-    lastAuthorId:{type:String}
+    authorId: String,
+    postId: String,
+    commentContent: String,
+    commentDate: String,
+    commentHeaderId: String,
+    commentLastId: String,
+    newCom: String,
+    lastAuthorId: String
 })
 
 commentSchema.statics.addComment= function (json,callback) {

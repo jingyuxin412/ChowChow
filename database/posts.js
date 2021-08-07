@@ -1,13 +1,14 @@
 
 var  mongodb=require("mongoose");
-var  db=require("./db.js");
+var mongoose=require("mongoose");
+var db=mongoose.createConnection("mongodb://127.0.0.1:27017/forum");
 
 var  PAGESIZE=5;
 var postSchema=new mongodb.Schema({
-    authorId:{type:String},
-    postTitle:{type:String},
-    postContent:{type:String},
-    postDate:{type:Date},
+    authorId: String,
+    postTitle: String,
+    postContent: String,
+    postDate: String,
     hasnewComment:{type:Number,default:0}
 })
 
@@ -22,12 +23,13 @@ postSchema.statics.setPost= function (json,callback) {
 }
 
 postSchema.statics.getDetailPost= function (json,callback) {
-    this.model("post").findOne(json).exec(function (err,result) {
+    this.model("post").find(json)
+    .exec(function (err,result) {
         if(err){
             console.log(err);
             return
         }
-        callback(result)
+        callback(result[0])
     })
 }
 
@@ -55,16 +57,6 @@ postSchema.statics.getPostCount= function (json,callback) {
 
 postSchema.statics.getAllPost= function (json,callback) {
     this.model("post").find(json).sort({postDate:-1}).exec(function (err,result) {
-        if(err){
-            console.log(err);
-            return
-        }
-        callback(result)
-    })
-}
-
-postSchema.statics.updatePost= function (json,condition, callback) {
-    this.model("post").update(json,condition,function(err,result){
         if(err){
             console.log(err);
             return

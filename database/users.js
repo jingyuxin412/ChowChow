@@ -1,5 +1,6 @@
 var  mongodb=require("mongoose");
-var  db=require("./db.js");
+var mongoose=require("mongoose");
+var db=mongoose.createConnection("mongodb://127.0.0.1:27017/forum");
 
 var  USERPAGESIZE=8;
 
@@ -27,7 +28,7 @@ userSchema.statics.findAllUser= function (page,callback) {
     var that=this
     this.model("user").find({}).limit(USERPAGESIZE).skip(skip).sort({registDate:-1}).exec(function (err,result) {
         if(err){
-            console.log("查找错误")
+            console.log("Fail")
             return
         }
         that.model("user").find({}).count().exec(function (err,result2) {

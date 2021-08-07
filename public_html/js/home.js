@@ -55,35 +55,17 @@ $(function() {
                     $(".search-post-wrap").empty()
                     posts.forEach(function(post) {
                         var date=FormatDate(post.postDate)
-                        var article = [
-                            '<article class="thread">',
-                            '<div class="thread_info">',
-                            '<div class="info_avatar">',
-                            '<a  target="_blank" href="./personPage.html?name=',post.author,
-                            ,'">',
-                            '<img class=\'authorAvatar\' src=',post.avatar ,'></a>',
-                            '</div>',
-                            '<div class="info_text">',
-                                '<p class="author">',post.author ,'</p>',
-                                '<p>', date, '</p>',
-                            '</div>',
-                            // '<a class="delPost" postid="',
-                            // post._id,'">','Delete this Post</a>',
-                            '</div>',
-                            '<div class="talk_content">',
-                            '<div class="title">',
-                            '<p><a href="./detailPage.html?postid=',
-                            post._id,'" target="_blank">',
-                            post.postTitle,
-                            '</a></p>',
-                            '</div>',
-                            '<div class="content">',
-                            '<p>', post.postContent, '</p>',
-                            '</div>',
-                            '</div>',
-                            '</article>'
-                        ].join("");
-
+                        var article = 
+                            '<article class="thread">' + '<div class="thread_info">' +
+                            '<div class="info_avatar">' + '<a  target="_blank" href="./personPage.html?name=' + post.author +
+                             + '">' + '<img class=\'authorAvatar\' src='+ post.avatar + '></a>' + 
+                            '</div>' + '<div class="info_text">'+ '<p class="author">' + post.author + '</p>' + '<p>'+ date+ '</p>'+
+                            '</div>'+ '</div>'+'<div class="talk_content">'+
+                            '<div class="title">'+'<p><a href="./detailPage.html?postid='+
+                            post._id + '" target="_blank">'+post.postTitle+
+                            '</a></p>'+'</div>'+'<div class="content">'+
+                            '<p>' + post.postContent + '</p>'+'</div>'+
+                            '</div>'+'</article>'
                         $(".search-post-wrap").append($(article));
                     })
                 }
@@ -139,17 +121,6 @@ function createNewComment(result){
             '</p><div class="newComment-opt">'+
             '<a href="./detailPage.html?postid='+item.postId+'">Detail</a>'+
             '</div></div></div>'+
-            // '<div class="post-part">'+
-            // '<div class="postAvatar">'+
-            // '<img src="'+item.postAvatar+'"/>'+
-            // '</div>'+
-            // '<div class="postAuthorName">'+
-            // '<a href="javascript:;">'+item.postAuthor+' </a>:' +
-            // '</div>'+
-            // '<div class="posttitle">'+
-            // item.postTitle+
-            // '</div>'+
-            // '</div>'+
             '</article>');
         if(item.lastAuthor){
             var lastComment=$(
