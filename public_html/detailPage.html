@@ -6,6 +6,9 @@
 		<title>Detail</title>
 		<script src="./jquery.js"></script>
 		<script src="./js/post.js"></script>
+		<script>
+			setInterval(islogin, 1000);
+		</script>
 		<script src="./js/detailPost.js" type="text/javascript" charset="utf-8"></script>
 		<link type="text/css" rel="stylesheet" href="./style/detail.css">
 	</head>
@@ -25,7 +28,8 @@
 									<i class="icon icon-person"></i>
 									<span id="username"></span>
 							</a>
-							<div class="commentPrompt">
+							<!-- <div class="commentPrompt"> -->
+							<div class="commentPrompt" onload="setInterval(checkNewComments, 100)">
 								<div class="comment-inner">
 								</div>
 								<div class="iknow">

@@ -12,6 +12,7 @@ function islogin(callback){
                 $(".user").hide();
                 $(".login").show();
                 $(".text-box").hide();
+                $(".post-clearfix").hide();
                 sessionStorage.removeItem("login");
                 sessionStorage.removeItem("loginer");
                 sessionStorage.removeItem("loginAvatar");
@@ -22,6 +23,7 @@ function islogin(callback){
                 $("#tourist").show()
             } else {
                 $(".user").show();
+                $(".post-clearfix").show();
                 $(".login").hide();
                 sessionStorage.setItem("login",1);
                 sessionStorage.setItem("loginer",result.username);
