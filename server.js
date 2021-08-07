@@ -312,22 +312,24 @@ app.get("/post/getPersonPost", (req, res) => {
     var username=req.query.name;
     var page=req.query.page;
     userservice.findOneUser({username:username}, function (result) {
-        var  authorId=result._id
-        var  avatar=result.avatar;
-        var  author=result.username;
+        if (result) {
+            var  authorId=result._id
+            var  avatar=result.avatar;
+            var  author=result.username;
 
-        postservice.getPagePost({"authorId":authorId},page, function (posts) {
-            if(!posts.length) {
-                res.send("-1")
-                return;
-            }
-            posts.forEach(function (item,index) {
-                var post=item._doc;
-                post.avatar=avatar;
-                post.author=author
+            postservice.getPagePost({"authorId":authorId},page, function (posts) {
+                if(!posts.length) {
+                    res.send("-1")
+                    return;
+                }
+                posts.forEach(function (item,index) {
+                    var post=item._doc;
+                    post.avatar=avatar;
+                    post.author=author
+                })
+                res.json(posts)
             })
-            res.json(posts)
-        })
+        }
     })
 });
 
